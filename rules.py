@@ -30,7 +30,8 @@ def trapezoidal(n, a, b, function):
 
 def simpsons(n, a, b, function):
 	if n % 2 != 0:
-		raise ValueError("N must be even.")
+		print("ERROR: N must be even.")
+		return None
 
 	dx = (b-a) / n
 	sum = function(a) + function(b)
@@ -45,15 +46,10 @@ if __name__ == "__main__":
 	assert left_endpoint(5, 0, 2, lambda x: x**2) == 1.92
 	assert right_endpoint(5, 0, 2, lambda x: x**2) == 3.52
 	assert midpoint(5, 0, 2, lambda x: x**2) == 2.64
+
 	assert trapezoidal(5, 0, 2, lambda x: x**2) == 2.72
 
-	threw_error = False
-	try:
-		simpsons(5, 0, 2, lambda x: x**2)
-	except ValueError:
-		threw_error = True
-	assert threw_error
-
+	assert simpsons(5, 0, 2, lambda x: x**2) == None
 	assert simpsons(4, 0, 2, lambda x: x**2) == 2.66667
 
 	print("Tests passed successfully.")
